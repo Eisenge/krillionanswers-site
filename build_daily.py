@@ -12,8 +12,8 @@ DEPLOY = os.path.dirname(os.path.abspath(__file__))
 KR = "https://krillionanswers.online"  # placeholder; owner provides the real domain
 API = "https://krillion.io/api/today"
 
-ORDER = ["en", "ru", "es", "pt", "id"]
-LANG_LABELS = {"en": "English", "ru": "Русский", "es": "Español", "pt": "Português", "id": "Bahasa Indonesia"}
+ORDER = ["en", "ru", "es", "pt", "id", "de", "fr", "vi"]
+LANG_LABELS = {"en": "English", "ru": "Русский", "es": "Español", "pt": "Português", "id": "Bahasa Indonesia", "de": "Deutsch", "fr": "Français", "vi": "Tiếng Việt"}
 
 # Human-readable dates per language (the daily page title must carry the date).
 MONTHS = {
@@ -22,6 +22,9 @@ MONTHS = {
     "es": ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"],
     "pt": ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"],
     "id": ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"],
+    "de": ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"],
+    "fr": ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"],
+    "vi": ["tháng 1","tháng 2","tháng 3","tháng 4","tháng 5","tháng 6","tháng 7","tháng 8","tháng 9","tháng 10","tháng 11","tháng 12"],
 }
 
 def format_date(iso, lang):
@@ -33,6 +36,10 @@ def format_date(iso, lang):
         return f"{int(d)} {mo} {y}"
     if lang == "es" or lang == "pt":
         return f"{int(d)} de {mo} de {y}"
+    if lang == "de":
+        return f"{int(d)}. {mo} {y}"
+    if lang == "vi":
+        return f"{int(d)} {mo}, {y}"
     return f"{int(d)} {mo} {y}"
 
 # 5-language shell strings for the daily page.
@@ -126,6 +133,60 @@ I18N = {
         "home": "Beranda",
         "nav_back": "Kembali ke panduan",
         "disclaimer": "Ini ide saran jawaban langka, bukan jawaban resmi game. Kumpulan jawaban dan skor milik krillion.io.",
+    },
+    "de": {
+        "title": "Krillion Answers Today — {date} (Dive #{n}) | 7 Prompts & seltene Antworten",
+        "desc": "Krillion answers today ({date}, Dive #{n}): die 7 offiziellen Prompts und Ideen für seltene Antworten. Sieh die Fragen des Tages, wie du tiefer punktest, und spiele das offizielle Spiel.",
+        "eyebrow": "TÄGLICHER DIVE / ANTWORTEN",
+        "h1": "Krillion Answers für {date} (Dive #{n})",
+        "intro": "Hier sind die sieben heutigen Krillion-Prompts (aus dem offiziellen Spiel) mit Ideen für seltene Antworten. Antworten sind Vorschläge, keine offiziellen Antworten; Seltenheit hängt davon ab, was andere Spieler tippen.",
+        "section_q": "Die 7 Prompts von heute",
+        "section_a": "Ideen für seltene Antworten",
+        "tip": "Tipp für seltene Antworten",
+        "tip_txt": "Seltene Antworten sinken tiefer. Bevorzuge eine konkrete, gültige Wahl gegenüber einer bekannten; denke an eine Unterkategorie, bevor du tippst.",
+        "play": "Spiele den heutigen Dive im offiziellen Spiel",
+        "yesterday": "Der gestrige Dive",
+        "not_official": "Unabhängiger Leitfaden, nicht mit Krillion verbunden. Die Fragen stammen aus dem offiziellen Spiel.",
+        "lang_label": "Sprache",
+        "home": "Start",
+        "nav_back": "Zurück zur Anleitung",
+        "disclaimer": "Dies sind vorgeschlagene Ideen für seltene Antworten, keine offiziellen Antworten des Spiels. Antwort-Pools und Wertung gehören krillion.io.",
+    },
+    "fr": {
+        "title": "Krillion Answers Today — {date} (Dive #{n}) | 7 invites & réponses rares",
+        "desc": "Krillion answers today ({date}, Dive #{n}) : les 7 invites officielles et des idées de réponses rares. Voyez les questions du jour, comment marquer plus profond, et jouez au jeu officiel.",
+        "eyebrow": "DAILY DIVE / RÉPONSES",
+        "h1": "Krillion Answers pour {date} (Dive #{n})",
+        "intro": "Voici les sept invites Krillion du jour (du jeu officiel) avec des idées de réponses rares. Ce sont des suggestions, pas des réponses officielles ; la rareté dépend de ce que tapent les autres joueurs.",
+        "section_q": "Les 7 invites du jour",
+        "section_a": "Idées de réponses rares",
+        "tip": "Conseil de réponses rares",
+        "tip_txt": "Les réponses rares plongent plus profond. Préférez un choix spécifique et valide à un choix célèbre ; pensez à une sous-catégorie avant de taper.",
+        "play": "Jouez le dive du jour sur le jeu officiel",
+        "yesterday": "Le dive d'hier",
+        "not_official": "Guide indépendant, non affilié à Krillion. Les questions viennent du jeu officiel.",
+        "lang_label": "Langue",
+        "home": "Accueil",
+        "nav_back": "Retour au guide",
+        "disclaimer": "Ce sont des idées suggérées de réponses rares, pas des réponses officielles du jeu. Les ensembles de réponses et la notation appartiennent à krillion.io.",
+    },
+    "vi": {
+        "title": "Krillion Answers Today — {date} (Dive #{n}) | 7 câu hỏi & câu trả lời hiếm",
+        "desc": "Krillion answers today ({date}, Dive #{n}): 7 câu hỏi chính thức và ý tưởng câu trả lời hiếm. Xem câu hỏi trong ngày, cách đạt điểm sâu hơn và chơi trò chơi chính thức.",
+        "eyebrow": "DAILY DIVE / CÂU TRẢ LỜI",
+        "h1": "Krillion Answers cho {date} (Dive #{n})",
+        "intro": "Đây là bảy câu hỏi Krillion hôm nay (từ trò chơi chính thức) kèm ý tưởng câu trả lời hiếm. Đây là gợi ý, không phải câu trả lời chính thức; độ hiếm phụ thuộc vào những gì người chơi khác gõ.",
+        "section_q": "7 câu hỏi hôm nay",
+        "section_a": "Ý tưởng câu trả lời hiếm",
+        "tip": "Mẹo câu trả lời hiếm",
+        "tip_txt": "Câu trả lời hiếm chìm sâu hơn. Ưu tiên lựa chọn cụ thể và hợp lệ hơn lựa chọn nổi tiếng; nghĩ về danh mục con trước khi gõ.",
+        "play": "Chơi dive hôm nay trên trò chơi chính thức",
+        "yesterday": "Dive hôm qua",
+        "not_official": "Hướng dẫn độc lập, không liên kết với Krillion. Câu hỏi đến từ trò chơi chính thức.",
+        "lang_label": "Ngôn ngữ",
+        "home": "Trang chủ",
+        "nav_back": "Quay lại hướng dẫn",
+        "disclaimer": "Đây là ý tưởng gợi ý cho câu trả lời hiếm, không phải câu trả lời chính thức của trò chơi. Danh sách câu trả lời và cách chấm điểm thuộc về krillion.io.",
     },
 }
 
@@ -222,10 +283,12 @@ def build_dive_page(lang, day):
     home_href = "/" if lang == "en" else f"/{lang}/"
     howto_href = "/how-to-play/" if lang == "en" else f"/{lang}/how-to-play/"
     tips_href = "/tips/" if lang == "en" else f"/{lang}/tips/"
+    privacy_href = "/privacy/" if lang == "en" else f"/{lang}/privacy/"
+    terms_href = "/terms/" if lang == "en" else f"/{lang}/terms/"
     crumb = (f'<nav class="breadcrumbs" aria-label="Breadcrumb">'
              f'<a href="{home_href}">{I["home"]}</a><span aria-hidden="true">›</span>'
              f'<span aria-current="page">Dive {n}</span></nav>')
-    return f"""<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="index,follow"><title>{esc(title)}</title><meta name="description" content="{esc(desc)}"><meta name="theme-color" content="#15324a"><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/style.css?v=20261012"><link rel="canonical" href="{url}">{hrefl_s}<meta property="og:type" content="website"><meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:url" content="{url}"><meta name="twitter:card" content="summary"><script type="application/ld+json">{{"@context": "https://schema.org", "@type": "WebPage", "name": {name_ld}, "url": "{url}", "description": {desc_ld}, "inLanguage": "{lang}", "isPartOf": {{"@type": "WebSite", "name": "Krillion Guide", "url": "{KR}/"}}}}</script><script type="application/ld+json">{{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": {bread}}}</script></head><body><a class="skip" href="#main">{I['nav_back']}</a><header><a class="brand" href="{home_href}">k<span>↗</span> <b>krillion guide</b></a><nav aria-label="Main"><a href="{howto_href}">How to play</a><a href="{tips_href}">Tips</a></nav></header><nav class="languages" aria-label="{I['lang_label']}">{lnav_s}</nav><main id="main"><article class="article dive-page">{crumb}<p class="eyebrow">{esc(I['eyebrow'])}</p><h1>{esc(I['h1'].format(n=n, date=date_h))}</h1><p class="intro">{I['intro']}</p><div class="dive-meta"><span class="badge">DIVE #{n}</span><span class="badge">Date: {date}</span><span class="badge">Resets: {day['resetsAt']}</span></div><h2>{I['section_q']}</h2><ol class="questions">{''.join(q_items)}</ol><h2>{I['section_a']}</h2><ul class="answer-ideas">{''.join(a_items)}</ul><div class="tip-box"><h2>{I['tip']}</h2><p>{I['tip_txt']}</p></div><p class="fine"><a href="https://krillion.io">{I['play']}</a> · <a href="{yesterday}">{I['yesterday']}</a></p><p class="fine">{I['disclaimer']} · {I['not_official']}</p></article></main><footer><a class="brand" href="{home_href}">krillion guide<span>↗</span></a><nav aria-label="Footer"><a href="{home_href}">Home</a><a href="{howto_href}">How to play</a><a href="{tips_href}">Tips</a></nav></footer></body></html>
+    return f"""<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="index,follow"><title>{esc(title)}</title><meta name="description" content="{esc(desc)}"><meta name="theme-color" content="#15324a"><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/style.css?v=20261012"><link rel="canonical" href="{url}">{hrefl_s}<meta property="og:type" content="website"><meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:url" content="{url}"><meta name="twitter:card" content="summary"><script type="application/ld+json">{{"@context": "https://schema.org", "@type": "WebPage", "name": {name_ld}, "url": "{url}", "description": {desc_ld}, "inLanguage": "{lang}", "isPartOf": {{"@type": "WebSite", "name": "Krillion Guide", "url": "{KR}/"}}}}</script><script type="application/ld+json">{{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": {bread}}}</script></head><body><a class="skip" href="#main">{I['nav_back']}</a><header><a class="brand" href="{home_href}">k<span>↗</span> <b>krillion guide</b></a><nav aria-label="Main"><a href="{howto_href}">How to play</a><a href="{tips_href}">Tips</a></nav></header><nav class="languages" aria-label="{I['lang_label']}">{lnav_s}</nav><main id="main"><article class="article dive-page">{crumb}<p class="eyebrow">{esc(I['eyebrow'])}</p><h1>{esc(I['h1'].format(n=n, date=date_h))}</h1><p class="intro">{I['intro']}</p><div class="dive-meta"><span class="badge">DIVE #{n}</span><span class="badge">Date: {date}</span><span class="badge">Resets: {day['resetsAt']}</span></div><h2>{I['section_q']}</h2><ol class="questions">{''.join(q_items)}</ol><h2>{I['section_a']}</h2><ul class="answer-ideas">{''.join(a_items)}</ul><div class="tip-box"><h2>{I['tip']}</h2><p>{I['tip_txt']}</p></div><p class="fine"><a href="https://krillion.io">{I['play']}</a> · <a href="{yesterday}">{I['yesterday']}</a></p><p class="fine">{I['disclaimer']} · {I['not_official']}</p></article></main><footer><a class="brand" href="{home_href}">krillion guide<span>↗</span></a><nav aria-label="Footer"><a href="{home_href}">Home</a><a href="{howto_href}">How to play</a><a href="{tips_href}">Tips</a><a href="{privacy_href}">Privacy</a><a href="{terms_href}">Terms</a></nav></footer></body></html>
 """
 
 def build_latest(lang, n):
@@ -234,7 +297,7 @@ def build_latest(lang, n):
     url = f"{KR}{path}"
     target = f"/dive/{n}/" if lang == "en" else f"/{lang}/dive/{n}/"
     tgt_url = f"{KR}/dive/{n}/" if lang == "en" else f"{KR}/{lang}/dive/{n}/"
-    label = {"en": "Latest Krillion Dive Answers", "ru": "Последний Dive Krillion", "es": "Último Krillion Dive", "pt": "Último Krillion Dive", "id": "Krillion Dive Terbaru"}[lang]
+    label = {"en": "Latest Krillion Dive Answers", "ru": "Последний Dive Krillion", "es": "Último Krillion Dive", "pt": "Último Krillion Dive", "id": "Krillion Dive Terbaru", "de": "Neueste Krillion-Dive-Antworten", "fr": "Dernières réponses Krillion Dive", "vi": "Câu trả lời Krillion Dive mới nhất"}[lang]
     home_href = "/" if lang == "en" else f"/{lang}/"
     return f"""<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,follow"><title>{label}</title><link rel="canonical" href="{tgt_url}"><meta http-equiv="refresh" content="0; url={target}"></head><body><a href="{target}">{label}</a></body></html>
 """
@@ -250,7 +313,7 @@ def update_sitemap():
                 url = f"{KR}/" if lang == "en" else f"{KR}/{lang}/"
             else:
                 url = f"{KR}/{slug}/" if lang == "en" else f"{KR}/{lang}/{slug}/"
-            lines.append(f"  <url><loc>{url}</loc><lastmod>2026-10-11</lastmod></url>")
+            lines.append(f"  <url><loc>{url}</loc><lastmod>{datetime.date.today().isoformat()}</lastmod></url>")
     # dive dirs on disk
     dive_dir = os.path.join(DEPLOY, "dive")
     nums = []

@@ -243,7 +243,7 @@ def update_sitemap():
     # regenerate full sitemap: static pages + dive pages found on disk
     sitemap_path = os.path.join(DEPLOY, "sitemap.xml")
     lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-    static = ["index", "how-to-play", "tips", "krillion-game", "krillion-unlimited", "one-in-a-krillion"]
+    static = ["index", "how-to-play", "tips", "krillion-game", "krillion-unlimited", "one-in-a-krillion", "privacy", "terms"]
     for lang in ORDER:
         for slug in static:
             if slug == "index":

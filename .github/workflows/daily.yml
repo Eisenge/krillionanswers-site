@@ -1,0 +1,42 @@
+name: krillion-daily
+
+on:
+  schedule:
+    # 12:30 Beijing time = 04:30 UTC
+    - cron: "30 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install --quiet --upgrade pip
+
+      - name: Build static pages (5 languages + sitemap)
+        run: python3 build_krillion.py
+
+      - name: Build today's dive pages (5 languages)
+        run: python3 build_daily.py
+
+      - name: Inject GA4 into all pages
+        run: python3 inject_ga.py
+
+      - name: Deploy to Hostinger
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+          FTP_ROOT: ${{ secrets.FTP_ROOT }}
+        run: python3 deploy_krillion.py

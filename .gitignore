@@ -1,0 +1,15 @@
+# --- secrets / local state ---
+.secrets/
+logs/
+__pycache__/
+*.pyc
+.DS_Store
+
+# --- never commit credentials ---
+.env
+*.env
+.env.*
+
+# --- editor ---
+.vscode/
+.idea/
